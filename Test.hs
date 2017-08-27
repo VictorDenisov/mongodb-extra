@@ -1,3 +1,4 @@
+{-# language OverloadedStrings #-}
 module Main
 where
 
@@ -6,10 +7,11 @@ import qualified Database.MongoDB.Query as Q
 import qualified Database.MongoDB.Connection as C
 
 import qualified Database.MongoDB.Extra.Query as EQ
+import qualified Database.MongoDB.Extra.Commands as EC
 
 import Conduit (($$), ($$+), ($$++), ($$+-))
 
-let runDB h db = Q.access h Q.slaveOk db
+runDB h db = Q.access h Q.slaveOk db
 
 main :: IO ()
 main = do
