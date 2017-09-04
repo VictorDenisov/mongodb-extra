@@ -1,6 +1,6 @@
 {-# language OverloadedStrings #-}
 
-module Database.MongoDB.Extra.Commands
+module Database.MongoDB.Extra.Ops.Query
 ( eq
 , gt
 , gte
@@ -9,25 +9,24 @@ module Database.MongoDB.Extra.Commands
 , lte
 ) where
 
-import Data.Bson ((=:), Document)
+import Data.Bson ((=:), Document, Val, Label)
 
-import Data.Text (Text)
-
-
-eq :: Text -> String -> Document
+eq :: Val v => Label -> v -> Document
 key `eq` value = [ key =: [ "$eq" =: value ] ]
 
-gt :: Text -> String -> Document
+gt :: Val v => Label -> v -> Document
 key `gt` value = [ key =: [ "$gt" =: value ] ]
 
-gte :: Text -> String -> Document
+gte :: Val v => Label -> v -> Document
 key `gte` value = [ key =: [ "$gte" =: value ] ]
 
-in_ :: Text -> String -> Document
+in_ :: Val v => Label -> v -> Document
 key `in_` value = [ key =: [ "$in" =: value ] ]
 
-lt :: Text -> String -> Document
+lt :: Val v => Label -> v -> Document
 key `lt` value = [ key =: [ "$lt" =: value ] ]
 
-lte :: Text -> String -> Document
+lte :: Val v => Label -> v -> Document
 key `lte` value = [ key =: [ "$lte" =: value ] ]
+
+
