@@ -7,6 +7,8 @@ module Database.MongoDB.Extra.Ops.Query
 , in_
 , lt
 , lte
+, ne
+, nin
 ) where
 
 import Data.Bson ((=:), Document, Val, Label)
@@ -29,4 +31,8 @@ key `lt` value = [ key =: [ "$lt" =: value ] ]
 lte :: Val v => Label -> v -> Document
 key `lte` value = [ key =: [ "$lte" =: value ] ]
 
+ne :: Val v => Label -> v -> Document
+key `ne` value = [ key =: [ "$ne" =: value ] ]
 
+nin :: Val v => Label -> [v] -> Document
+key `nin` values = [ key =: [ "$nin" =: values ] ]

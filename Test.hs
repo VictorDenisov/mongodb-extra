@@ -15,7 +15,7 @@ runDB h db = Q.access h Q.slaveOk db
 
 main :: IO ()
 main = do
-  h <- C.connect (C.host "localhost")
+  h <- C.connect $ C.host "localhost"
   (c, x) <- Q.access h Q.slaveOk "test" $ (EQ.find "books" []) $$+ CL.take 1
   putStrLn $ show x
   y <- Q.access h Q.slaveOk "test" $ (c $$+- CL.take 1)
